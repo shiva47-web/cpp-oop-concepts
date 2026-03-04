@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+class Shape {
+protected:
+    double dimension;
+
+public:
+    Shape(double d) {
+        dimension = d;
+        cout << "Shape Constructor\n";
+    }
+
+    virtual double area() = 0;   // Pure virtual function
+
+    virtual ~Shape() {   // Virtual destructor
+        cout << "Shape Destructor\n";
+    }
+};
+
+class Square : public Shape {
+public:
+    Square(double d) : Shape(d) {
+        cout << "Square Constructor\n";
+    }
+
+    double area() override {
+        return this->dimension * this->dimension;  // this pointer
+    }
+
+    ~Square() {
+        cout << "Square Destructor\n";
+    }
+};
+
+int main() {
+    Shape* s = new Square(5);   // Dynamic binding
+    cout << "Area: " << s->area() << endl;
+    delete s;
+    return 0;
+}
