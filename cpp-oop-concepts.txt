@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+class Employee {
+protected:
+    string name;
+
+public:
+    Employee(string n) {
+        name = n;
+        cout << "Employee Constructor\n";
+    }
+
+    virtual void calculateSalary() {   // Virtual function
+        cout << "Base Salary\n";
+    }
+
+    virtual ~Employee() {   // Virtual Destructor
+        cout << "Employee Destructor\n";
+    }
+};
+
+class Developer : public Employee {   // Single Inheritance
+    int basicPay;
+
+public:
+    Developer(string n, int pay) : Employee(n) {
+        this->basicPay = pay;   // this pointer
+        cout << "Developer Constructor\n";
+    }
+
+    void calculateSalary() override {   // Function overriding
+        cout << "Developer Salary: " << basicPay + 5000 << endl;
+    }
+
+    ~Developer() {
+        cout << "Developer Destructor\n";
+    }
+};
+
+int main() {
+    Employee* e = new Developer("Shiva", 30000);  // Dynamic binding
+    e->calculateSalary();
+    delete e;
+    return 0;
+}
+
