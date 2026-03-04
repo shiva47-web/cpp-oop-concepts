@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+class Person {
+public:
+    Person() { cout << "Person Constructor\n"; }
+};
+
+class Worker {
+public:
+    Worker() { cout << "Worker Constructor\n"; }
+};
+
+class Manager : public Person, public Worker {   // Multiple
+public:
+    Manager() { cout << "Manager Constructor\n"; }
+};
+
+class TeamLead : public Manager {   // Hybrid
+public:
+    TeamLead() { cout << "TeamLead Constructor\n"; }
+};
+
+int main() {
+    TeamLead t;
+    return 0;
+}
