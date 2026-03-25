@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Person {
+public:
+    string name;
+    int age;
+
+    void getData() {
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter age: ";
+        cin >> age;
+    }
+
+    void displayData() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+    }
+};
+
+// Derived class
+class Student : public Person {
+public:
+    int rollNo;
+
+    void getStudentData() {
+        cout << "Enter roll number: ";
+        cin >> rollNo;
+    }
+
+    void displayStudentData() {
+        displayData();  // accessing base class function
+        cout << "Roll Number: " << rollNo << endl;
+    }
+};
+
+int main() {
+    Student s;
+
+    s.getData();          // Base class function
+    s.getStudentData();   // Derived class function
+    s.displayStudentData();
+
+    return 0;
+}
