@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Shape {
+public:
+    // Virtual function
+    virtual void draw() {
+        cout << "Drawing a generic shape" << endl;
+    }
+
+    // Virtual destructor (important)
+    virtual ~Shape() {
+        cout << "Shape destructor called" << endl;
+    }
+};
+
+// Derived class 1
+class Circle : public Shape {
+public:
+    void draw() override {   // override keyword (modern C++)
+        cout << "Drawing a Circle" << endl;
+    }
+
+    ~Circle() {
+        cout << "Circle destructor called" << endl;
+    }
+};
+
+// Derived class 2
+class Rectangle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing a Rectangle" << endl;
+    }
+
+    ~Rectangle() {
+        cout << "Rectangle destructor called" << endl;
+    }
+};
+
+// Function using base class pointer
+void render(Shape* s) {
+    s->draw();  // Runtime polymorphism happens here
+}
+
+int main() {
+    Shape* s1 = new Circle();     
+    Shape* s2 = new Rectangle();  
+
+    render(s1);
+    render(s2);
+
+    delete s1;  // Proper destructor call
+    delete s2;
+
+    return 0;
+}
